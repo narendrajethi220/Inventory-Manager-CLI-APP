@@ -1,20 +1,41 @@
-🏪 Inventory Manager — Problem Definition
+---
+# 🏪 Inventory Manager CLI App
 
-📌 Problem Statement
-You are hired to build a Shop Inventory Management System for a local grocery store owner. The owner wants a simple Python program to track his products, manage stock levels, and get alerts when items are running low — all from a text menu.
+A simple **menu-driven Python application** that helps a grocery store owner manage inventory directly from the terminal.
 
-🎯 Objective
-Build a menu-driven Python program using only:
-Lists — to store product names, quantities, prices
-Loops — to keep menu running
-Conditions — to check stock, validate input
-Basic operations — add, subtract, multiply
+This project is built using only:
 
+* Lists
+* Loops
+* Conditions
+* Functions
+* Basic arithmetic operations
 
-📋 Features to Build
+It is designed to strengthen core Python fundamentals.
 
-✅ Feature 1 — Main Menu
-Program must keep showing this menu until user presses 5 to Exit
+---
+
+## 📌 Problem Statement
+
+Build a Shop Inventory Management System that allows a user to:
+
+* Add new products
+* Sell products
+* Restock items
+* View stock reports
+* Get low-stock alerts
+
+All operations must be handled through a text-based menu.
+
+---
+
+## 🎯 Features
+
+### 1️⃣ Main Menu
+
+The program keeps running until the user selects **Exit**.
+
+```
 ==============================
    🏪 SHOP INVENTORY MANAGER
 ==============================
@@ -25,138 +46,132 @@ Program must keep showing this menu until user presses 5 to Exit
 5. Exit
 ------------------------------
 Enter your choice:
+```
 
+---
 
-✅ Feature 2 — Add New Product
-Ask for product name, price per unit, quantity
-If product already exists → show error, don't add duplicate
-Store in 3 separate lists: product_names, product_prices, product_qty
-Sample Input / Output:
---- ADD PRODUCT ---
-Enter product name  : Apple
-Enter price per unit: 10
-Enter quantity      : 20
+### 2️⃣ Add New Product
 
-✅ Apple added successfully!
+* Takes product name, price, and quantity.
+* Prevents duplicate product entries.
+* Stores data in parallel lists.
 
---- ADD PRODUCT ---
-Enter product name  : Apple
-⚠️  Apple already exists in inventory!
+---
 
+### 3️⃣ Sell Product
 
-✅ Feature 3 — Sell Product
-Ask for product name and quantity to sell
-Check: Does product exist? If not → show error
-Check: Is enough stock available? If not → show error
-If valid → subtract quantity and show remaining stock
-Sample Input / Output:
---- SELL PRODUCT ---
-Enter product name     : Apple
-Enter quantity to sell : 5
+* Checks if product exists.
+* Ensures enough stock is available.
+* Updates stock after successful sale.
+* Displays sale value and remaining stock.
 
-✅ Sold 5 units of Apple
-💰 Sale Value : ₹50
-📦 Remaining Stock: 15 units
+---
 
---- SELL PRODUCT ---
-Enter product name     : Apple
-Enter quantity to sell : 50
+### 4️⃣ Restock Product
 
-❌ Not enough stock! Only 15 units available.
+* Adds quantity to an existing product.
+* Validates product existence.
 
---- SELL PRODUCT ---
-Enter product name     : Banana
-❌ Banana not found in inventory!
+---
 
+### 5️⃣ View Stock Report
 
-✅ Feature 4 — Restock Product
-Ask for product name and quantity to add
-Product must already exist in inventory
-Add new quantity to existing stock
-Sample Input / Output:
---- RESTOCK PRODUCT ---
-Enter product name    : Mango
-Enter quantity to add : 30
+Displays:
 
-✅ Mango restocked! New quantity: 33 units
+* Product Name
+* Price
+* Quantity
+* Status
 
+Status Rules:
 
-✅ Feature 5 — View Stock Report
-Display all products: Name | Price | Quantity | Status
-Qty = 0 → ❌ OUT OF STOCK
-Qty < 5 → ⚠️ LOW STOCK
-Qty >= 5 → ✅ Available
-Show total products and total inventory value at bottom
-Sample Output:
-====================================================
-            📦 STOCK REPORT
-====================================================
-No.  Product     Price    Qty     Status
-----------------------------------------------------
-1.   Apple       ₹10      15      ✅ Available
-2.   Mango       ₹30      3       ⚠️  LOW STOCK
-3.   Banana      ₹5       0       ❌ OUT OF STOCK
-4.   Orange      ₹20      8       ✅ Available
-----------------------------------------------------
-Total Products        : 4
-Total Inventory Value : ₹395
-====================================================
+* Qty = 0 → ❌ OUT OF STOCK
+* Qty < 5 → ⚠️ LOW STOCK
+* Qty ≥ 5 → ✅ Available
 
+Also shows:
 
-⚠️ Validation Rules
-Situation
-What to show
-Choice not in 1–5
-❌ Invalid choice! Try again.
-Quantity is 0 or negative
-❌ Quantity must be greater than 0!
-Price is 0 or negative
-❌ Price must be greater than 0!
-Selling more than stock
-❌ Not enough stock!
-Product not found
-❌ Product not found!
-Duplicate product
-⚠️ Product already exists!
-Inventory empty on report
-📭 No products in inventory yet!
+* Total number of products
+* Total inventory value
 
+---
 
-🗂️ Data Storage Structure
-Use 3 parallel lists — index must match across all lists:
-`
-# Apple  → index 0 → price ₹10 → qty 15
-# Mango  → index 1 → price ₹30 → qty 3
-# Banana → index 2 → price ₹5  → qty 0
+## 🗂️ Data Structure Used
 
+The system uses **three parallel lists**:
 
-🧠 Logic Hints (Think, don't copy!)
-FIND PRODUCT → loop through product_names
-               if name matches → note that index
-               use same index on price and qty lists
+```python
+product_names = []
+product_prices = []
+product_qty = []
+```
 
-SELL LOGIC   → find index
-               check product_qty[index] >= sell_qty
-               if yes → product_qty[index] = product_qty[index] - sell_qty
+Example structure:
 
-TOTAL VALUE  → start total = 0
-               loop i from 0 to len(product_names)
-               total = total + (product_prices[i] × product_qty[i])
+| Index | Name   | Price | Quantity |
+| ----- | ------ | ----- | -------- |
+| 0     | Apple  | 10    | 15       |
+| 1     | Mango  | 30    | 3        |
+| 2     | Banana | 5     | 0        |
 
+Index position links all product data.
 
-📐 Constraints
-Use only Lists, Loops, Conditions, and Operations
-All data lives in the 3 parallel lists
-Must use a while True loop for the menu
+---
 
-✅ Success Checklist
-☐ Menu loops until Exit is chosen
-☐ Can add multiple products
-☐ Duplicate product is blocked
-☐ Sell reduces stock correctly
-☐ Cannot sell more than available stock
-☐ Restock increases quantity
-☐ Stock report shows correct status tags
-☐ Total inventory value calculated correctly
-☐ All invalid inputs handled with messages
+## ⚠️ Validation Rules
 
+| Situation               | Message                            |
+| ----------------------- | ---------------------------------- |
+| Invalid menu choice     | ❌ Invalid choice! Try again.       |
+| Quantity ≤ 0            | ❌ Quantity must be greater than 0! |
+| Price ≤ 0               | ❌ Price must be greater than 0!    |
+| Product not found       | ❌ Product not found!               |
+| Selling more than stock | ❌ Not enough stock!                |
+| Duplicate product       | ⚠️ Product already exists!         |
+| Empty inventory report  | 📭 No products in inventory yet!   |
+
+---
+
+## 🧠 Logic Approach
+
+* Product search → Loop through `product_names`
+* Use index to access price and quantity
+* Update quantity using arithmetic operations
+* Calculate total inventory value using a loop
+
+---
+
+## 📐 Constraints
+
+* Only Lists, Loops, Conditions, and Basic Operations
+* Must use `while True` for menu loop
+* No dictionaries or advanced data structures
+
+---
+
+## 🚀 How to Run
+
+```bash
+python inventory_manager.py
+```
+
+---
+
+## ✅ Learning Outcomes
+
+* Working with parallel lists
+* Input validation
+* Menu-driven program structure
+* Index-based data handling
+* Basic business logic implementation
+
+---
+
+## 📦 Project Status
+
+✔ Core features implemented
+✔ Validation handled
+✔ Fully terminal-based
+
+--
+Developed with ❤️ by Narendra Singh Jethi!
