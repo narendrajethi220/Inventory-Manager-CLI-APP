@@ -1,4 +1,3 @@
----
 # 🏪 Inventory Manager CLI App
 
 A simple **menu-driven Python application** that helps a grocery store owner manage inventory directly from the terminal.
