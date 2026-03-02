@@ -11,7 +11,6 @@ Conditions — to check stock, validate input
 Basic operations — add, subtract, multiply
 
 📋 Features to Build
-
 ✅ Feature 1 — Main Menu
 Program must keep showing this menu until user presses 5 to Exit
 ==============================
@@ -145,7 +144,6 @@ TOTAL VALUE  → start total = 0
 
 📐 Constraints
 Use only Lists, Loops, Conditions, and Operations
-
 All data lives in the 3 parallel lists
 Must use a while True loop for the menu
 
