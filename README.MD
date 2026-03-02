@@ -10,7 +10,9 @@ Loops — to keep menu running
 Conditions — to check stock, validate input
 Basic operations — add, subtract, multiply
 
+
 📋 Features to Build
+
 ✅ Feature 1 — Main Menu
 Program must keep showing this menu until user presses 5 to Exit
 ==============================
